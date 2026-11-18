@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarefas do Dia</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    document.documentElement.dataset.tema = localStorage.getItem('tema') || 'escuro';
+  </script>
+</head>
+<body>
+  <header class="cabecalho">
+    <div>
+      <h1>Tarefas do Dia</h1>
+      <p id="data-hoje" class="data"></p>
+    </div>
+    <div class="cabecalho-acoes">
+      <span id="resumo-geral" class="resumo"></span>
+      <div class="seletor-tema" role="group" aria-label="Tema">
+        <button class="btn-tema" data-tema="claro" title="Tema claro" aria-label="Tema claro">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+        </button>
+        <button class="btn-tema" data-tema="escuro" title="Tema escuro" aria-label="Tema escuro">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+          </svg>
+        </button>
+      </div>
+      <button id="btn-reiniciar" class="btn-fantasma" title="Desmarcar todas as tarefas de hoje">Reiniciar dia</button>
+    </div>
+  </header>
+
+  <main id="painel" class="painel"></main>
+
+  <template id="tpl-modulo">
+    <section class="modulo">
+      <header class="modulo-cabecalho">
+        <div class="modulo-titulo">
+          <span class="modulo-ponto"></span>
+          <h2 class="modulo-nome"></h2>
+          <span class="modulo-epiteto"></span>
+        </div>
+        <div class="modulo-contadores">
+          <span class="contador-pendentes" title="Pendentes"></span>
+          <span class="contador-total" title="Concluídas / Total"></span>
+        </div>
+      </header>
+      <div class="barra"><div class="barra-preenchida"></div></div>
+      <ul class="lista"></ul>
+      <form class="form-adicionar" autocomplete="off">
+        <input type="text" class="input-nova" placeholder="Adicionar tarefa…" maxlength="80" />
+        <button type="submit" class="btn-adicionar" title="Adicionar">+</button>
+      </form>
+    </section>
+  </template>
+
+  <template id="tpl-tarefa">
+    <li class="tarefa">
+      <label class="tarefa-label">
+        <input type="checkbox" class="tarefa-check" />
+        <span class="tarefa-caixa"></span>
+        <span class="tarefa-texto"></span>
+      </label>
+      <button class="btn-remover" title="Remover">×</button>
+    </li>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
